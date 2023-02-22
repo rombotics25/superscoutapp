@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Electron</title>
+    <style>
+      button {
+        background-color:  #4CAF50; /* Green */
+}
+    </style>
+  </head>
+  <body style="background-color:#ffffff;">
+    
+    <script src="./renderer.js"></script>
+    <canvas id="canvas"></canvas>
+    <script src="script.js"></script>
+
+    <h1>Electron</h1>
+    <p>Click the buttons to change their color and increment the counter</p>
+
+    <label for="alliance">Alliance:</label>
+    <select name="alliance" id="alliance">
+      <option value="CHOOSE ALLIANCE">CHOOSE ALLIANCE</option>
+      <option value="Red">Red</option>
+      <option value="Blue">Blue</option>
+    </select>
+
+    <br></br>
+    <label for="matchType">Match Type:</label>
+    <select name="matchType" id="matchType">
+      <option value="CHOOSE MATCH TYPE">CHOOSE MATCH TYPE</option>
+      <option value="Qualification">Qualification</option>
+      <option value="Semi-Final">Semi-Final</option>
+      <option value="Playoff">Playoff</option>
+      <option value="Final">Final</option>
+    </select>
+
+    <br></br>
+    <input type="number" id="matchNum"></input>
+    <p>Match Number ^ </p>
+
+    <input type="number" id="teamNum">
+    <p>Team Number</p>
+
+    <button type="button">Number of Links</button>
+    <p id="counter">0</p>
+    
+
+    <textarea id="elementId" name="inputName" rows="3" cols="40"></textarea>
+    <p>Comments ^</p>
+    
+  
+    <textarea id="cubecone" name="Preplaced Piece Type and Location" rows="3" cols="40"></textarea>
+    <p>Preplaced Piece Type and Location ^^^</p>
+    <p><strong>THE FIRST LETTER IS THE PIECE CLOSEST TO THE LOADING LONE, NO MATTER WHAT</strong></p>
+    <p><strong>THE ID'S ARE AS FOLLOWS:
+      <br></br>
+      <br>CUBE = B</br>
+      <br>CONE = C</br>
+    </strong></p>
+
+    <label for="outcome">Charge station Outcome:</label>
+    <select name="outcome" id="outcome">
+      <option value="CHOOSE CHARGE OUTCOME">CHOOSE CHARGE OUTCOME</option>
+      <option value="Did not activate">Did not activate</option>
+      <option value="Docked">Docked</option>
+      <option value="Charged">Charged</option>
+    </select>
+
+    <button type="button" id="submit">SUBMIT</button>
+    <button type="button" id="test"></button>
+
+    <script type="text/javascript">
+      var counter = 0;
+      var allianceX = document.getElementsByName('alliance');
+      var button = document.querySelector('button');
+      var outcomeX = document.getElementsByName('outcome');
+      var commentBoxData = document.getElementById('elementId');
+      var cubeOrCone = document.getElementById('cubecone');
+      var chargeOut;
+      var chargeVal = 10;
+      var chargeText;
+      var finalDataOut = [];
+      var chargeToData = 10;
+      var allianceToVal;
+      var allianceVal;
+      var commentsOut = commentBoxData.value;
+      var actuFinal = "";
+
+      var submit = document.getElementById("submit");
+      if(button){
+        button.addEventListener('click', function(){
+          counter++;
+          document.getElementById('counter').innerHTML = counter;
+        });
+      }
+      
+      if(outcomeX){
+        console.log("hello!");
+        outcome.addEventListener('click', function(){
+          chargeOut = document.getElementsByName("outcome")[0];
+          chargeText = chargeOut.options[chargeOut.selectedIndex].value;
+          if(chargeText == "Did not activate"){
+            chargeVal = 0;
+            console.log(chargeVal);
+          }
+          else if(chargeText == "Docked"){
+            chargeVal = 1;
+            console.log(chargeVal);
+          }
+          else if(chargeText == "Charged"){
+            chargeVal = 2;
+            console.log(chargeVal);
+          }
+          else{
+            chargeVal = 10;
+            
+          
+          }
+          console.log(chargeText);
+
+        })
+      chargeToData = chargeVal;
+      }
+
+      if(allianceX){
+        console.log(document.getElementsByName('alliance'));
+        alliance.addEventListener('click', function(){
+          allianceOut = document.getElementsByName("alliance")[0];
+          allianceText = allianceOut.options[allianceOut.selectedIndex].value;
+          if(allianceText == "Red"){
+            allianceVal = 0;
+            console.log(allianceVal);
+          }
+          else if(allianceText == "Blue"){
+            allianceVal = 1;
+            console.log(allianceVal);
+          }
+          else{
+            allianceVal = 10;
+            
+          
+          }
+          console.log(allianceText);
+
+        })
+        allianceToVal = allianceVal;
+      }
+      
+
+      if(submit){
+        console.log(commentBoxData.value);
+        finalDataOut = [];
+        actuFinal = "";
+        submit.addEventListener('click', function(){
+        finalDataOut = [];
+
+        finalDataOut.push(allianceVal); //alliance
+
+        finalDataOut.push(document.getElementsByName('matchType')[0].value); //match type
+
+        //push the match number to finalDataOut
+        finalDataOut.push(document.getElementById('matchNum').value); //match number
+
+        finalDataOut.push(document.getElementById('teamNum').value); //team number
+
+
+        finalDataOut.push(chargeToData); //charge station status
+        
+        finalDataOut.push(counter); //number of links
+
+        finalDataOut.push(commentBoxData.value); //comments
+
+        finalDataOut.push(cubeOrCone.value); //preplaced pieces
+
+
+        for(var i = 0; i < finalDataOut.length; i++){
+          actuFinal += finalDataOut[i];
+          actuFinal += ",";
+        }
+
+        console.log(actuFinal);
+
+        
+        var QRCode = require('qrcode')
+
+QRCode.toString(actuFinal,{type:'terminal'}, function (err, url) {
+   console.log(url);
+   console.log("lol");
+ })
+        })
+
+
+        
+
+        
+      }
+
+    </script>
+
+    
+  </body>
+</html>

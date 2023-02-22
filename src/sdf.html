@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Electron</title>
+    <style>
+      button {
+        background-color:  #4CAF50; /* Green */
+}
+    </style>
+  </head>
+  <body style="background-color:#ffffff;">
+    
+    <script src="./renderer.js"></script>
+
+    <h1>Electron</h1>
+    <p>Click the buttons to change their color and increment the counter</p>
+    <button type="button">Number of Links</button>
+    <p id="counter">0</p>
+    <button type="button" onpress="console.log(1)">dfsdfdf</button>
+    
+
+    <textarea id="elementId" name="inputName" rows="3" cols="40"></textarea>
+    <p>Comments ^</p>
+    
+  
+    <textarea id="elementId" name="Preplaced Piece Type and Location" rows="3" cols="40"></textarea>
+    <p>Preplaced Piece Type and Location ^^^</p>
+    <p><strong>THE FIRST LETTER IS THE PIECE CLOSEST TO THE LOADING LONE, NO MATTER WHAT</strong></p>
+    <p><strong>THE ID'S ARE AS FOLLOWS:
+      <br></br>
+      <br>CUBE = B</br>
+      <br>CONE = C</br>
+    </strong></p>
+
+    <label for="outcome">Charge station Outcome:</label>
+    <select name="outcome" id="outcome">
+      <option value="Did not activate">Did not activate</option>
+      <option value="Docked">Docked</option>
+      <option value="Charged">Charged</option>
+    </select>
+
+    <button type="button" id="submit">SUBMIT</button>
+    <button type="button" id="test" onpress=""
+
+    <script type="text/javascript">
+      var counter = 0;
+      var button = document.querySelector('button');
+      var outcomeX = document.querySelector('outcome');
+      var chargeOut;
+      var chargeVal;
+      var chargeText;
+      var finalDataOut = [];
+      var chargeToData;
+
+      var submit = document.getElementById("submit");
+      if(button){
+        button.addEventListener('click', function(){
+          counter++;
+          document.getElementById('counter').innerHTML = counter;
+        });
+      }
+      
+      if(outcomeX){
+        console.log("hello!");
+        outcome.addEventListener('click', function(){
+          chargeOut = document.getElementByName("outcome")[0];
+          chargeText = chargeOut.options[chargeOut.selectedIndex].value;
+          console.log(chargeOut);
+          if(chargeText == "Did not activate"){
+            chargeVal = 0;
+            console.log(chargeVal);
+          }
+          else if(chargeText == "Docked"){
+            chargeVal = 1;
+            console.log(chargeVal);
+          }
+          else if(chargeText == "Charged"){
+            chargeVal = 2;
+            console.log(chargeVal);
+          }
+          else{
+            chargeVal = 10;
+            
+          
+          }
+          console.log(chargeText);
+
+        })
+      chargeToData = chargeVal;
+      }
+      
+
+      if(submit){
+        finalDataOut = [];
+        submit.addEventListener('click', function(){
+        finalDataOut = [];
+        finalDataOut.push(chargeToData);
+        console.log(chargeToData);
+        finalDataOut.push(counter);
+        console.log(counter);
+        console.log(finalDataOut);
+        })
+      }
+    </script>
+
+    
+  </body>
+</html>
